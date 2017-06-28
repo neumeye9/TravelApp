@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Python Belt Exam</title>
+</head>
+<body>
+    <h1>Add a Trip</h1>
+
+    <a href="/logout">Logout</a>
+    <br>
+    <br>
+    <a href="/home">Home</a>
+    <br>
+    <br>
+    <form action="/create" method='post'>
+        {% csrf_token %}
+        <label for="destination">Destination:</label>
+        <input type="text" name="destination" placeholder="Destination">
+        <br>
+        <br>
+        <label for="description">Description:</label>
+        <input type="text" name="plan" placeholder="Description">
+        <br>
+        <br>
+        <label for="start">Travel Date From:</label>
+        <input type="date" name="start_date" min="06-27-2017">
+        <br>
+        <br>
+        <label for="end">Travel Date To:</label>
+        <input type="date" name="end_date" min="06-28-2017">
+        <br>
+        <br>
+        <input type="submit" value="Add">
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

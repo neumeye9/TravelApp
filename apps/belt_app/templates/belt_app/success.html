@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Python Belt Exam</title>
+</head>
+<body>
+    <h1>Hello, {{user.first_name}}!</h1>
+    <br>
+    <a href="/logout">Logout</a>
+    <br>
+    <h2>Your Trip Schedules:</h2>
+    <table border="1">
+        <tr>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Plan</th>
+        </tr>
+        {% for trip in trips %}
+        <tr>
+            {% if trip.user.id == user.id %}
+            <td><a href="/destination/{{trip.id}}">{{trip.destination}}</a></td>
+            <td>{{trip.start_date}}</td>
+            <td>{{trip.end_date}}</td>
+            <td>{{trip.plan}}</td>
+            {% endif %}
+        {% endfor %}
+        </tr>
+    </table>
+
+    <h2>Other User's Travel Plans</h2>
+    <table border=1>
+        <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Plan</th>
+            <th>Do You Want to Join?</th>
+        </tr>
+            {% for trip in trips %}
+            <tr>
+                {% if trip.user.id != user.id %}
+                <td>{{trip.user.first_name}} {{trip.user.last_name}}</td>
+                <td><a href="/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                <td>{{trip.start_date}}</td>
+                <td>{{trip.end_date}}</td>
+                <td>{{trip.plan}}</td>
+                <td><a href="/join/{{trip.id}}">Join</a></td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+    </table>
+    <br>
+    <br>
+    <a href="/addtrip">Add Travel Plan</a>
+
+</body>
+</html>

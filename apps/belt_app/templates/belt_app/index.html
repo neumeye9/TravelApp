@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Python Belt Exam</title>
+</head>
+<body>
+    <h1>Register</h1>
+        <form action="/register" method='post'>
+            {% csrf_token %}
+            <label for="firstname">First Name:</label>
+            <input type="text" name="first_name">
+            <br>
+            <br>
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="last_name">
+            <br>
+            <br>
+            <label for="email">Email:</label>
+            <input type="text" name="email">
+            <br>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+            <p>*Must be atleast 8 characters long*</p>
+            <label for="confirm">Password Confirmation:</label>
+            <input type="password" name="confirm">
+            <br>
+            <br>
+            <input type="submit" value="Register" class="enter">
+        </form>
+        <br>
+            {% if messages %}
+                {% for message in messages %}
+                    <ul>
+                        <li>{{ message }}</li>
+                    </ul>
+                {% endfor %}
+            {% endif %}
+        <br>
+    <h1>Log In</h1>
+        <form action="/login" method='post'>
+            {% csrf_token %}
+            <label for="email">Email:</label>
+            <input type="text" name="email">
+            <br>                <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+            <br>
+            <br>
+            <input type="submit" value="Login" class="enter">
+        </form>
+</body>
+</html>
